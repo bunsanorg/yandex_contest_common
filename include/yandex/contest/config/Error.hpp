@@ -4,7 +4,7 @@
 
 namespace yandex{namespace contest{namespace config
 {
-    struct Error: virtual yandex::Error {};
+    struct Error: virtual contest::Error {};
 
     struct InputArchiveError: virtual Error {};
 

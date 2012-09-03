@@ -25,12 +25,12 @@ namespace yandex{namespace contest{namespace config{namespace traits
     };
 }}}}
 
-#define YANDEX_CONFIG_EXPORT(PARENT, DERIVED, FIELD) \
-    namespace yandex{namespace config{namespace traits \
+#define YANDEX_CONTEST_CONFIG_EXPORT(PARENT, DERIVED, FIELD) \
+    namespace yandex{namespace contest{namespace config{namespace traits \
     { \
         template <> \
         struct typeKey<PARENT, DERIVED> \
         { \
             static constexpr const char *value = FIELD; \
         }; \
-    }}}
+    }}}}

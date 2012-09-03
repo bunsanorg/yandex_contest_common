@@ -2,9 +2,8 @@
 
 #include <type_traits>
 
-#include "yandex/config/Error.hpp"
-
-#include "yandex/config/TypeTraits.hpp"
+#include "yandex/contest/config/Error.hpp"
+#include "yandex/contest/config/TypeTraits.hpp"
 
 #include <type_traits>
 #include <memory>

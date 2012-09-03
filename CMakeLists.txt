@@ -35,6 +35,6 @@ install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib)
-install(FILES YandexContestCommon.cmake DESTINATION share/cmake)
+install(FILES YandexContestCommon.cmake DESTINATION ${CMAKE_ROOT}/Modules)
 
 yandex_contest_tests()

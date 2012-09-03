@@ -1,0 +1,44 @@
+#include "yandex/contest/Log.hpp"
+
+#include "yandex/contest/detail/IntrusivePointerHelper.hpp"
+#include "yandex/contest/detail/StreamLog.hpp"
+
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+namespace yandex{namespace contest
+{
+    YANDEX_CONTEST_INTRUSIVE_PTR_DEFINE(Log)
+
+    Log::~Log() {/* does nothing */}
+
+    LogPointer Log::instance_ = Log::defaultInstance();
+
+    const LogPointer &Log::instance()
+    {
+        return instance_;
+    }
+
+    void Log::registerInstance(const LogPointer &log)
+    {
+        instance_ = log;
+    }
+
+    const LogPointer &Log::defaultInstance()
+    {
+        static std::once_flag once_flag;
+        static LogPointer logInstance;
+        std::call_once(once_flag,
+            []()
+            {
+                logInstance = detail::StreamLog::create(std::clog);
+            });
+        return logInstance;
+    }
+
+    detail::LogOutputStream Log::append(const Level level, const std::string &position)
+    {
+        return detail::LogOutputStream(LogPointer(this), level, position);
+    }
+}}

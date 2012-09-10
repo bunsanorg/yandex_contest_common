@@ -76,9 +76,10 @@ namespace yandex{namespace contest{namespace stream_enum
  * \param NAME enum name
  * \param ITEMS tuple of enum items
  * \param IS_SCOPED if scoped enum should be used
+ * \param SPECS specifiers for function definition (inline, friend, static)
  */
-#define YANDEX_CONTEST_STREAM_ENUM_ISTREAM(NAME, ITEMS, IS_SCOPED) \
-    inline std::istream &operator>>(std::istream &in, NAME &item) \
+#define YANDEX_CONTEST_STREAM_ENUM_ISTREAM(NAME, ITEMS, IS_SCOPED, SPECS) \
+    SPECS std::istream &operator>>(std::istream &in, NAME &item) \
     { \
         std::string val; \
         in >> val; \
@@ -106,9 +107,10 @@ namespace yandex{namespace contest{namespace stream_enum
  * \param NAME enum name
  * \param ITEMS tuple of enum items
  * \param IS_SCOPED if scoped enum should be used
+ * \param SPECS specifiers for function definition (inline, friend, static)
  */
-#define YANDEX_CONTEST_STREAM_ENUM_OSTREAM(NAME, ITEMS, IS_SCOPED) \
-    inline std::ostream &operator<<(std::ostream &out, const NAME &item) \
+#define YANDEX_CONTEST_STREAM_ENUM_OSTREAM(NAME, ITEMS, IS_SCOPED, SPECS) \
+    SPECS std::ostream &operator<<(std::ostream &out, const NAME &item) \
     { \
         switch (item) \
         { \
@@ -148,15 +150,16 @@ namespace yandex{namespace contest{namespace stream_enum
  * \param NAME enum name
  * \param ITEMS tuple of enum items: (val1, val2, val3)
  * \param IS_SCOPED 0 for enum NAME {};, 1 for enum class NAME {};
+ * \param SPECS specifiers for function definition (inline, friend, static)
  */
-#define YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, IS_SCOPED) \
+#define YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, IS_SCOPED, SPECS) \
     enum BOOST_PP_IF(IS_SCOPED, class, ) NAME \
     { \
         BOOST_PP_TUPLE_ENUM(ITEMS) \
     }; \
     YANDEX_CONTEST_STREAM_ENUM_ERRORS(NAME) \
-    YANDEX_CONTEST_STREAM_ENUM_ISTREAM(NAME, ITEMS, IS_SCOPED) \
-    YANDEX_CONTEST_STREAM_ENUM_OSTREAM(NAME, ITEMS, IS_SCOPED)
+    YANDEX_CONTEST_STREAM_ENUM_ISTREAM(NAME, ITEMS, IS_SCOPED, SPECS) \
+    YANDEX_CONTEST_STREAM_ENUM_OSTREAM(NAME, ITEMS, IS_SCOPED, SPECS)
 
 /*!
  * \brief Define old-style enum with operator<<() and operator>>() defined.
@@ -164,12 +167,28 @@ namespace yandex{namespace contest{namespace stream_enum
  * \param NAME enum name
  * \param ITEMS tuple of enum items: (val1, val2, val3)
  */
-#define YANDEX_CONTEST_STREAM_ENUM(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 0)
+#define YANDEX_CONTEST_STREAM_ENUM(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 0, inline)
 
 /*!
- * \brief Define old-style enum with operator<<() and operator>>() defined.
+ * \brief Define old-style enum with operator<<() and operator>>() defined (in-class definition).
  *
  * \param NAME enum name
  * \param ITEMS tuple of enum items: (val1, val2, val3)
  */
-#define YANDEX_CONTEST_STREAM_ENUM_CLASS(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 1)
+#define YANDEX_CONTEST_STREAM_INCLASS_ENUM(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 0, friend inline)
+
+/*!
+ * \brief Define enum with operator<<() and operator>>() defined.
+ *
+ * \param NAME enum name
+ * \param ITEMS tuple of enum items: (val1, val2, val3)
+ */
+#define YANDEX_CONTEST_STREAM_ENUM_CLASS(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 1, inline)
+
+/*!
+ * \brief Define enum with operator<<() and operator>>() defined (in-class definition).
+ *
+ * \param NAME enum name
+ * \param ITEMS tuple of enum items: (val1, val2, val3)
+ */
+#define YANDEX_CONTEST_STREAM_INCLASS_ENUM_CLASS(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 1, friend inline)

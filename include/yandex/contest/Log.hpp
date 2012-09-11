@@ -15,17 +15,6 @@ namespace yandex{namespace contest
         class LogOutputStream;
     }
 
-    namespace log_detail
-    {
-        YANDEX_CONTEST_STREAM_ENUM_CLASS(Level,
-        (
-            DEBUG,
-            INFO,
-            WARNING,
-            ERROR
-        ))
-    }
-
     /*!
      * \warning Do not create Log object on stack (behavior is undefined).
      * Use LogPointer object and heap-allocation.
@@ -33,7 +22,13 @@ namespace yandex{namespace contest
     class Log: private boost::noncopyable
     {
     public:
-        typedef log_detail::Level Level;
+        YANDEX_CONTEST_INCLASS_STREAM_ENUM_CLASS(Level,
+        (
+            DEBUG,
+            INFO,
+            WARNING,
+            ERROR
+        ))
 
     public:
         /*!

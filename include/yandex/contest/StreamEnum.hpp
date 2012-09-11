@@ -175,7 +175,7 @@ namespace yandex{namespace contest{namespace stream_enum
  * \param NAME enum name
  * \param ITEMS tuple of enum items: (val1, val2, val3)
  */
-#define YANDEX_CONTEST_STREAM_INCLASS_ENUM(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 0, friend inline)
+#define YANDEX_CONTEST_INCLASS_STREAM_ENUM(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 0, friend inline)
 
 /*!
  * \brief Define enum with operator<<() and operator>>() defined.
@@ -191,4 +191,4 @@ namespace yandex{namespace contest{namespace stream_enum
  * \param NAME enum name
  * \param ITEMS tuple of enum items: (val1, val2, val3)
  */
-#define YANDEX_CONTEST_STREAM_INCLASS_ENUM_CLASS(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 1, friend inline)
+#define YANDEX_CONTEST_INCLASS_STREAM_ENUM_CLASS(NAME, ITEMS) YANDEX_CONTEST_STREAM_ENUM_SCOPE(NAME, ITEMS, 1, friend inline)

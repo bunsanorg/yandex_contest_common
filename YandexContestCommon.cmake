@@ -73,7 +73,7 @@ endfunction()
 macro(yandex_contest_tests)
     if(${ENABLE_TESTS})
         enable_testing()
-        add_subdirectory(tests ${PROJECT_BINARY_DIR}/tests)
+        add_subdirectory(tests ${CMAKE_CURRENT_BINARY_DIR}/tests)
     endif()
 endmacro()
 
@@ -88,10 +88,21 @@ macro(yandex_contest_tests_cmake)
 
     add_definitions(-DBOOST_TEST_DYN_LINK)
 
+    set(test_env
+        "YANDEX_CONTEST_TESTS_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+        "YANDEX_CONTEST_TESTS_BINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}"
+        "YANDEX_CONTEST_TESTS_RESOURCES_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/resources"
+        "YANDEX_CONTEST_TESTS_RESOURCES_BINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}/resources")
+
     foreach(src ${test_srcs})
         string(REGEX REPLACE "^.*/([^/]+)\\.cpp$" "\\1" trgt ${src})
         add_executable(test_${trgt} ${src})
         target_link_libraries(test_${trgt} ${CMAKE_PROJECT_NAME} ${libraries})
         add_test(${trgt} test_${trgt})
+        set_tests_properties(${trgt} PROPERTIES ENVIRONMENT "${test_env}")
     endforeach()
+
+    if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resources)
+        add_subdirectory(resources ${CMAKE_CURRENT_BINARY_DIR}/resources)
+    endif()
 endmacro()

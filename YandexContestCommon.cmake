@@ -89,8 +89,8 @@ macro(yandex_contest_tests_cmake)
     add_definitions(-DBOOST_TEST_DYN_LINK)
 
     set(test_env
-        "YANDEX_CONTEST_SOURCE_DIR=${PROJECT_SOURCE_DIR}"
-        "YANDEX_CONTEST_BINARY_DIR=${PROJECT_BINARY_DIR}"
+        "YANDEX_CONTEST_SOURCE_DIR=${CMAKE_SOURCE_DIR}"
+        "YANDEX_CONTEST_BINARY_DIR=${CMAKE_BINARY_DIR}"
     )
 
     foreach(src ${test_srcs})

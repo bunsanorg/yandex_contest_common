@@ -17,7 +17,6 @@ list(APPEND libraries ${Boost_LIBRARIES})
 include_directories(include)
 
 # Targets
-
 add_library(${PROJECT_NAME} SHARED
     src/Error.cpp
     src/Log.cpp
@@ -29,7 +28,7 @@ add_library(${PROJECT_NAME} SHARED
 )
 target_link_libraries(${PROJECT_NAME} ${libraries})
 
-# installation
+# Installation
 install(DIRECTORY include DESTINATION .)
 install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION bin

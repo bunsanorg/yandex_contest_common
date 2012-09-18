@@ -91,10 +91,7 @@ macro(yandex_contest_tests_cmake)
     set(test_env
         "YANDEX_CONTEST_SOURCE_DIR=${PROJECT_SOURCE_DIR}"
         "YANDEX_CONTEST_BINARY_DIR=${PROJECT_BINARY_DIR}"
-        "YANDEX_CONTEST_TESTS_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
-        "YANDEX_CONTEST_TESTS_BINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}"
-        "YANDEX_CONTEST_TESTS_RESOURCES_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/resources"
-        "YANDEX_CONTEST_TESTS_RESOURCES_BINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}/resources")
+    )
 
     foreach(src ${test_srcs})
         string(REGEX REPLACE "^.*/([^/]+)\\.cpp$" "\\1" trgt ${src})

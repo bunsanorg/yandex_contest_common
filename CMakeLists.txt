@@ -22,6 +22,7 @@ add_library(${PROJECT_NAME} SHARED
     src/Log.cpp
     src/Tempfile.cpp
     src/SystemError.cpp
+    src/TypeInfo.cpp
     src/detail/LogOutputStream.cpp
     src/detail/StreamLog.cpp
     src/detail/ThrowingLog.cpp

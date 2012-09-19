@@ -2,6 +2,8 @@
 
 #include "yandex/contest/Log.hpp"
 
+#include "yandex/contest/Log.hpp"
+
 #include <boost/current_function.hpp>
 #include <boost/lexical_cast.hpp>
 
@@ -20,8 +22,10 @@
  * \section streaming_iface_sec streaming interface
  * STREAM_{Level} defines accept no arguments.
  * Using operator<< user can output anything supported by std::ostream.
+ * To output yandex::contest::config-serializable object use STREAM_OBJECT() wrapper.
  * \code{.cpp}
- * STREAM_INFO << "First part " << 123 << " one more string ";
+ * std::vector<int> x = {1, 2, 3};
+ * STREAM_INFO << "First part " << 123 << " one more string " << STREAM_OBJECT(obj);
  * \endcode
  *
  * \see ::yandex::contest::Log::append
@@ -52,3 +56,5 @@
 #define STREAM_INFO STREAM_LOG_BYNAME(INFO)
 #define STREAM_WARNING STREAM_LOG_BYNAME(WARNING)
 #define STREAM_ERROR STREAM_LOG_BYNAME(ERROR)
+
+#define STREAM_OBJECT(X) ::yandex::contest::detail::LogOutputStream::object(X)

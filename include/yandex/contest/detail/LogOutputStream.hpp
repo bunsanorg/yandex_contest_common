@@ -9,13 +9,42 @@
 
 #include "yandex/contest/Forward.hpp"
 
+#include "yandex/contest/TypeInfo.hpp"
+
+#include "yandex/contest/config/OutputArchive.hpp"
+
 #include <sstream>
 #include <memory>
+
+#include <boost/property_tree/ptree.hpp>
 
 namespace yandex{namespace contest{namespace detail
 {
     class LogOutputStream
     {
+    public:
+        template <typename T>
+        class Object
+        {
+        public:
+            explicit Object(const T &ref):
+                ref_(ref) {}
+
+            const T &operator*() const
+            {
+                return ref_;
+            }
+
+        private:
+            const T &ref_;
+        };
+
+        template <typename T>
+        static Object<T> object(const T &obj)
+        {
+            return Object<T>(obj);
+        }
+
     public:
         LogOutputStream(const LogPointer &log,
                         const Log::Level level,
@@ -36,6 +65,19 @@ namespace yandex{namespace contest{namespace detail
             (*buf_) << obj;
             return *this;
         }
+
+        template <typename T>
+        LogOutputStream &operator<<(const Object<T> &obj)
+        {
+            boost::property_tree::ptree ptree;
+            config::OutputArchive<boost::property_tree::ptree>::saveToPtree(
+                boost::serialization::make_nvp(typeinfo::name(*obj).c_str(), *obj), ptree);
+            append(ptree);
+            return *this;
+        }
+
+    private:
+        void append(const boost::property_tree::ptree &ptree);
 
     private:
         LogPointer log_;

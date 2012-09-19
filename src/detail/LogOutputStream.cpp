@@ -3,6 +3,7 @@
 #include "yandex/contest/Log.hpp"
 
 #include <boost/assert.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 namespace yandex{namespace contest{namespace detail
 {
@@ -25,5 +26,10 @@ namespace yandex{namespace contest{namespace detail
     {
         level_ = level;
         return *this;
+    }
+
+    void LogOutputStream::append(const boost::property_tree::ptree &ptree)
+    {
+        boost::property_tree::write_json(*buf_, ptree);
     }
 }}}

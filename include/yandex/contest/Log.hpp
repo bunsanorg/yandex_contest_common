@@ -24,6 +24,7 @@ namespace yandex{namespace contest
     public:
         YANDEX_CONTEST_INCLASS_STREAM_ENUM_CLASS(Level,
         (
+            TRACE,
             DEBUG,
             INFO,
             WARNING,

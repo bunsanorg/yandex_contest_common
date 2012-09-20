@@ -1,6 +1,6 @@
 # compiler
 if(${CMAKE_COMPILER_IS_GNUCXX})
-    set(gxx_flags "-std=c++11 -Wall -Wextra -Wno-multichar")
+    set(gxx_flags "-rdynamic -std=c++11 -Wall -Wextra -Wno-multichar")
     if(${UNIX})
         set(gxx_flags "-pthread ${gxx_flags}")
     endif()
@@ -9,7 +9,7 @@ if(${CMAKE_COMPILER_IS_GNUCXX})
 endif()
 
 if (${CMAKE_COMPILER_IS_GNUCC})
-    set(gcc_flags "-std=c11 -Wall -Wextra")
+    set(gcc_flags "-rdynamic -std=c11 -Wall -Wextra")
     if(${UNIX})
         set(gcc_flags "-pthread ${gcc_flags}")
     endif()

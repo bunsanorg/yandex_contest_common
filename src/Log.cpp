@@ -4,8 +4,6 @@
 #include "yandex/contest/detail/StreamLog.hpp"
 
 #include <iostream>
-#include <thread>
-#include <mutex>
 
 namespace yandex{namespace contest
 {
@@ -27,13 +25,8 @@ namespace yandex{namespace contest
 
     const LogPointer &Log::defaultInstance()
     {
-        static std::once_flag once_flag;
-        static LogPointer logInstance;
-        std::call_once(once_flag,
-            []()
-            {
-                logInstance = detail::StreamLog::create(std::clog);
-            });
+        // synchronized by compiler
+        static LogPointer logInstance = detail::StreamLog::create(std::clog);
         return logInstance;
     }
 

@@ -7,6 +7,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <chrono>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -147,6 +148,13 @@ namespace yandex{namespace contest{namespace config
         void load(boost::filesystem::path &obj)
         {
             obj = ptree_->template get_value<std::string>();
+        }
+
+        /// For std::chrono::duration.
+        template <typename Rep, typename Period>
+        void load(std::chrono::duration<Rep, Period> &obj)
+        {
+            obj = std::chrono::duration<Rep, Period>(ptree_->template get_value<Rep>());
         }
 
         /// For std::unordered_map.

@@ -9,6 +9,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <chrono>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -95,6 +96,13 @@ namespace yandex{namespace contest{namespace config
         void save(const boost::filesystem::path &obj)
         {
             save(obj.string());
+        }
+
+        /// For std::chrono::duration.
+        template <typename Rep, typename Period>
+        void save(const std::chrono::duration<Rep, Period> &obj)
+        {
+            save(obj.count());
         }
 
         /// For general object.

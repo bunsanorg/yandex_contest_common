@@ -26,6 +26,7 @@ add_library(${PROJECT_NAME} SHARED
     src/detail/LogOutputStream.cpp
     src/detail/StreamLog.cpp
     src/detail/ThrowingLog.cpp
+    src/detail/NullLog.cpp
 )
 target_link_libraries(${PROJECT_NAME} ${libraries})
 

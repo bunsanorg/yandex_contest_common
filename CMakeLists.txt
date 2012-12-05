@@ -6,18 +6,11 @@ cmake_minimum_required(VERSION 2.8)
 
 include(${CMAKE_SOURCE_DIR}/YandexContestCommon.cmake)
 
-# BOOST
-set(Boost_USE_STATIC_LIBS OFF)
-set(Boost_USE_MULTITHREADED ON)
-find_package(Boost COMPONENTS system filesystem serialization unit_test_framework REQUIRED)
-include_directories(${Boost_INCLUDE_DIRS})
-list(APPEND libraries ${Boost_LIBRARIES})
+bunsan_use_boost(system filesystem serialization unit_test_framework)
 
-# Local
-include_directories(include)
+bunsan_use_bunsan(common)
 
-# Targets
-add_library(${PROJECT_NAME} SHARED
+bunsan_add_shared_library(${PROJECT_NAME}
     src/Error.cpp
     src/Log.cpp
     src/Tempfile.cpp
@@ -28,14 +21,9 @@ add_library(${PROJECT_NAME} SHARED
     src/detail/ThrowingLog.cpp
     src/detail/NullLog.cpp
 )
-target_link_libraries(${PROJECT_NAME} ${libraries})
 
-# Installation
-install(DIRECTORY include DESTINATION .)
-install(TARGETS ${PROJECT_NAME}
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib)
+bunsan_install_headers()
+bunsan_install_targets(${PROJECT_NAME})
 install(FILES YandexContestCommon.cmake DESTINATION ${CMAKE_ROOT}/Modules)
 
-yandex_contest_tests()
+bunsan_include_tests()

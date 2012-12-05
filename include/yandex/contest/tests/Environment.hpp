@@ -1,12 +1,10 @@
 #pragma once
 
-#include <cstdlib>
+#include "bunsan/tests/environment.hpp"
 
-#include <boost/filesystem/path.hpp>
-
-static const boost::filesystem::path sourceDir = getenv("YANDEX_CONTEST_SOURCE_DIR");
-static const boost::filesystem::path binaryDir = getenv("YANDEX_CONTEST_BINARY_DIR");
-static const boost::filesystem::path testsSourceDir = sourceDir / "tests";
-static const boost::filesystem::path testsBinaryDir = binaryDir / "tests";
+static const boost::filesystem::path sourceDir = bunsan::tests::dir::source;
+static const boost::filesystem::path binaryDir = bunsan::tests::dir::binary;
+static const boost::filesystem::path testsSourceDir = bunsan::tests::dir::tests::source;
+static const boost::filesystem::path testsBinaryDir = bunsan::tests::dir::tests::binary;
 static const boost::filesystem::path testsResourcesSourceDir = testsSourceDir / "resources";
 static const boost::filesystem::path testsResourcesBinaryDir = testsBinaryDir / "resources";

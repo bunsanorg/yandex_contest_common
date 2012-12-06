@@ -1,34 +1,26 @@
 #include "yandex/contest/Tempfile.hpp"
 #include "yandex/contest/detail/LogHelper.hpp"
 
-#include "yandex/contest/SystemError.hpp"
+#include "bunsan/enable_error_info.hpp"
+#include "bunsan/filesystem/fstream.hpp"
 
 #include <boost/filesystem/operations.hpp>
-#include <boost/filesystem/fstream.hpp>
 #include <boost/assert.hpp>
 
 namespace yandex{namespace contest
 {
     Tempfile::Tempfile(const std::string &data):
-        // TODO implement atomic file creation
+        // TODO implement atomic file creation: note: use fopen(.."x"..)
         path_(boost::filesystem::unique_path(boost::filesystem::temp_directory_path() / "%%%%-%%%%-%%%%-%%%%"))
     {
         STREAM_DEBUG << "Creating temporary file at " << path_.get() << ".";
+        BUNSAN_EXCEPTIONS_WRAP_BEGIN()
         {
-            boost::filesystem::ofstream fout(path_.get());
-            if (!fout)
-            {
-                STREAM_ERROR << "Unable to create temporary file at " << path_.get() << "; exception is thrown.";
-                BOOST_THROW_EXCEPTION(SystemError("open"));
-            }
+            bunsan::filesystem::ofstream fout(path_.get());
             fout << data;
             fout.close();
-            if (!fout)
-            {
-                STREAM_ERROR << "Unable to close temporary file at " << path_.get() << "; exception is throw.";
-                BOOST_THROW_EXCEPTION(SystemError("close"));
-            }
         }
+        BUNSAN_EXCEPTIONS_WRAP_END()
     }
 
     Tempfile::Tempfile(Tempfile &&tmp)

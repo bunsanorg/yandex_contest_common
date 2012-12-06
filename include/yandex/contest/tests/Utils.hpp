@@ -32,11 +32,12 @@ std::string readData(const boost::filesystem::path &path)
     BOOST_TEST_MESSAGE("Attempt to read " << path << ".");
     BOOST_REQUIRE(boost::filesystem::exists(path));
     boost::filesystem::ifstream fin(path);
-    BOOST_REQUIRE(fin);
+    BOOST_REQUIRE(fin.is_open());
     const std::string rdata{
         std::istreambuf_iterator<char>(fin),
         std::istreambuf_iterator<char>()
     };
+    BOOST_REQUIRE(fin);
     fin.close();
     BOOST_REQUIRE(fin);
     return rdata;
@@ -47,10 +48,9 @@ void writeData(const boost::filesystem::path &path, const std::string &data)
     BOOST_TEST_CHECKPOINT(BOOST_CURRENT_FUNCTION);
     BOOST_TEST_MESSAGE("Attempt to write to " << path << ".");
     boost::filesystem::ofstream fout(path);
-    BOOST_REQUIRE(fout);
+    BOOST_REQUIRE(fout.is_open());
     fout << data << std::flush;
     BOOST_REQUIRE(fout);
     fout.close();
     BOOST_REQUIRE(fout);
 }
-

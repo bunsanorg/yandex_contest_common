@@ -11,10 +11,8 @@ bunsan_use_boost(system filesystem serialization unit_test_framework)
 bunsan_use_bunsan(common)
 
 bunsan_add_shared_library(${PROJECT_NAME}
-    src/Error.cpp
     src/Log.cpp
     src/Tempfile.cpp
-    src/SystemError.cpp
     src/TypeInfo.cpp
     src/detail/LogOutputStream.cpp
     src/detail/StreamLog.cpp

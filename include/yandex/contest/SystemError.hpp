@@ -2,21 +2,19 @@
 
 #include "yandex/contest/Error.hpp"
 
-#include <system_error>
+#include "bunsan/system_error.hpp"
+
+#include <utility>
 
 namespace yandex{namespace contest
 {
-    struct SystemError: virtual Error
+    struct SystemError: virtual Error, virtual bunsan::system_error
     {
-        SystemError();
-        explicit SystemError(const int errcode);
-        explicit SystemError(const std::error_code &ec);
-        explicit SystemError(const std::string &what);
-        SystemError(const int errcode, const std::string &what);
-        SystemError(const std::error_code &ec, const std::string &what);
+        template <typename ... Args>
+        explicit SystemError(Args &&...args): bunsan::system_error(std::forward<Args>(args)...) {}
 
-        typedef boost::error_info<struct errorCodeTag, std::error_code> errorCode;
-        typedef boost::error_info<struct errorCodeMessageTag, std::string> errorCodeMessage;
-        typedef boost::error_info<struct whatMessageTag, std::string> whatMessage;
+        typedef error_code errorCode;
+        typedef error_code_message errorCodeMessage;
+        typedef what_message whatMessage;
     };
 }}

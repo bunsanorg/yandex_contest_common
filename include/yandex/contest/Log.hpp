@@ -2,7 +2,7 @@
 
 #include "yandex/contest/Forward.hpp"
 
-#include "yandex/contest/StreamEnum.hpp"
+#include "bunsan/stream_enum.hpp"
 
 #include <string>
 
@@ -22,7 +22,7 @@ namespace yandex{namespace contest
     class Log: private boost::noncopyable
     {
     public:
-        YANDEX_CONTEST_INCLASS_STREAM_ENUM_CLASS(Level,
+        BUNSAN_INCLASS_STREAM_ENUM_CLASS(Level,
         (
             TRACE,
             DEBUG,

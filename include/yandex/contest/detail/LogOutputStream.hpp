@@ -11,7 +11,7 @@
 
 #include "yandex/contest/TypeInfo.hpp"
 
-#include "yandex/contest/config/OutputArchive.hpp"
+#include "bunsan/config/output_archive.hpp"
 
 #include <sstream>
 #include <memory>
@@ -70,7 +70,7 @@ namespace yandex{namespace contest{namespace detail
         LogOutputStream &operator<<(const Object<T> &obj)
         {
             boost::property_tree::ptree ptree;
-            config::OutputArchive<boost::property_tree::ptree>::saveToPtree(
+            bunsan::config::output_archive<boost::property_tree::ptree>::save_to_ptree(
                 boost::serialization::make_nvp(typeinfo::name(*obj).c_str(), *obj), ptree);
             append(ptree);
             return *this;

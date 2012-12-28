@@ -23,15 +23,15 @@ namespace yandex{namespace contest
         BUNSAN_EXCEPTIONS_WRAP_END()
     }
 
-    Tempfile::Tempfile(Tempfile &&tmp)
+    Tempfile::Tempfile(Tempfile &&tmp) noexcept
     {
-        this->swap(tmp);
+        swap(tmp);
     }
 
-    Tempfile &Tempfile::operator=(Tempfile &&tmp)
+    Tempfile &Tempfile::operator=(Tempfile &&tmp) noexcept
     {
-        this->swap(tmp);
-        tmp.remove();
+        swap(tmp);
+        tmp.remove(); // FIXME Should we use noexcept version here? Or should we mark remove() with noexcept?
         return *this;
     }
 

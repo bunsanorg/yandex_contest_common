@@ -1,15 +1,13 @@
 #pragma once
 
 #include "bunsan/error.hpp"
-
-#include <utility>
+#include "bunsan/forward_constructor.hpp"
 
 namespace yandex{namespace contest
 {
     /// Base error class for Yandex.Contest.Invoker project.
     struct Error: virtual bunsan::error
     {
-        template <typename ... Args>
-        explicit Error(Args &&...args): bunsan::error(std::forward<Args>(args)...) {}
+        BUNSAN_INHERIT_EXPLICIT_CONSTRUCTOR(Error, bunsan::error)
     };
 }}

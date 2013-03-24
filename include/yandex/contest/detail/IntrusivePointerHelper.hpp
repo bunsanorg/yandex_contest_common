@@ -3,17 +3,17 @@
 /*!
  * \file
  *
+ * This header is intended to be used with forward-declared intrusive pointers.
+ *
  * To avoid copy-paste of boost::intrusive_ptr
  * related functions implementation
  * these defines are introduced.
  *
- * \warning This pointer implementation is not thread-safe.
- *
  * \warning Do not include it in header files.
  */
 
-#define YANDEX_CONTEST_INTRUSIVE_PTR_ADD_REF(P) ++(P->refCount_)
-#define YANDEX_CONTEST_INTRUSIVE_PTR_RELEASE(P) if ((--(P->refCount_)) == 0) delete P
+#define YANDEX_CONTEST_INTRUSIVE_PTR_ADD_REF(P) ::yandex::contest::intrusive_ptr_detail::add_ref(P)
+#define YANDEX_CONTEST_INTRUSIVE_PTR_RELEASE(P) ::yandex::contest::intrusive_ptr_detail::release(P)
 
 #define YANDEX_CONTEST_INTRUSIVE_PTR_DEFINE(CLASS) \
     void intrusive_ptr_add_ref(CLASS *p) noexcept \
@@ -24,3 +24,14 @@
     { \
         YANDEX_CONTEST_INTRUSIVE_PTR_RELEASE(p); \
     }
+
+namespace yandex{namespace contest
+{
+    class IntrusivePointeeBase;
+}}
+
+namespace yandex{namespace contest{namespace intrusive_ptr_detail
+{
+    void add_ref(IntrusivePointeeBase *) noexcept;
+    void release(IntrusivePointeeBase *) noexcept;
+}}}

@@ -16,6 +16,7 @@ bunsan_add_shared_library(${PROJECT_NAME}
     src/Tempfile.cpp
     src/TypeInfo.cpp
 
+    src/detail/IntrusivePointerHelper.cpp
     src/detail/LogOutputStream.cpp
     src/detail/StreamLog.cpp
     src/detail/ThrowingLog.cpp

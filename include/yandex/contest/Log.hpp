@@ -1,6 +1,7 @@
 #pragma once
 
 #include "yandex/contest/Forward.hpp"
+#include "yandex/contest/IntrusivePointeeBase.hpp"
 
 #include "bunsan/stream_enum.hpp"
 
@@ -19,7 +20,7 @@ namespace yandex{namespace contest
      * \warning Do not create Log object on stack (behavior is undefined).
      * Use LogPointer object and heap-allocation.
      */
-    class Log: private boost::noncopyable
+    class Log: public IntrusivePointeeBase
     {
     public:
         BUNSAN_INCLASS_STREAM_ENUM_CLASS(Level,
@@ -87,13 +88,6 @@ namespace yandex{namespace contest
          * \note Function is thread-safe.
          */
         static const LogPointer &defaultInstance();
-
-        virtual ~Log();
-
-    private:
-        friend void intrusive_ptr_add_ref(Log *) noexcept;
-        friend void intrusive_ptr_release(Log *) noexcept;
-        std::size_t refCount_ = 0;
 
     private:
         static LogPointer instance_;

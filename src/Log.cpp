@@ -9,8 +9,6 @@ namespace yandex{namespace contest
 {
     YANDEX_CONTEST_INTRUSIVE_PTR_DEFINE(Log)
 
-    Log::~Log() {/* does nothing */}
-
     LogPointer Log::instance_ = Log::defaultInstance();
 
     const LogPointer &Log::instance()

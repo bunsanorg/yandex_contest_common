@@ -2,6 +2,7 @@
 
 #include "bunsan/error.hpp"
 #include "bunsan/forward_constructor.hpp"
+#include "bunsan/filesystem/error.hpp"
 
 namespace yandex{namespace contest
 {
@@ -9,5 +10,7 @@ namespace yandex{namespace contest
     struct Error: virtual bunsan::error
     {
         BUNSAN_INHERIT_EXPLICIT_CONSTRUCTOR(Error, bunsan::error)
+
+        typedef bunsan::filesystem::error::path path;
     };
 }}

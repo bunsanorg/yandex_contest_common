@@ -1,6 +1,3 @@
-include(BunsanCommon)
-
-# binary targets
 function(yandex_contest_add_binary_targets bin_targets_)
     set(bin_targets)
 

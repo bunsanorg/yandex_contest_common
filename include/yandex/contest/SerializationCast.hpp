@@ -1,10 +1,10 @@
 #pragma once
 
-#include <string>
-#include <sstream>
-
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
+
+#include <sstream>
+#include <string>
 
 namespace yandex{namespace contest{namespace serialization
 {

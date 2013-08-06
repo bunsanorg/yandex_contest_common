@@ -1,9 +1,9 @@
 #pragma once
 
-#include <string>
-
-#include <boost/optional.hpp>
 #include <boost/filesystem/path.hpp>
+#include <boost/optional.hpp>
+
+#include <string>
 
 namespace yandex{namespace contest
 {

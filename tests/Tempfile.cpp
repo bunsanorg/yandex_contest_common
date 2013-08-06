@@ -3,10 +3,10 @@
 
 #include <yandex/contest/Tempfile.hpp>
 
-#include <iterator>
-
-#include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/fstream.hpp>
+#include <boost/filesystem/operations.hpp>
+
+#include <iterator>
 
 namespace ya = yandex::contest;
 namespace fs = boost::filesystem;

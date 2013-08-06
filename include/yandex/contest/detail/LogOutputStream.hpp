@@ -8,15 +8,14 @@
  */
 
 #include <yandex/contest/Forward.hpp>
-
 #include <yandex/contest/TypeInfo.hpp>
 
 #include <bunsan/config/output_archive.hpp>
 
-#include <sstream>
-#include <memory>
-
 #include <boost/property_tree/ptree.hpp>
+
+#include <memory>
+#include <sstream>
 
 namespace yandex{namespace contest{namespace detail
 {

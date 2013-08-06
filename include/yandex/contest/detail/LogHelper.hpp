@@ -2,8 +2,6 @@
 
 #include <yandex/contest/Log.hpp>
 
-#include <yandex/contest/Log.hpp>
-
 #include <boost/current_function.hpp>
 #include <boost/lexical_cast.hpp>
 

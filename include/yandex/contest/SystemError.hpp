@@ -2,8 +2,8 @@
 
 #include <yandex/contest/Error.hpp>
 
-#include <bunsan/system_error.hpp>
 #include <bunsan/forward_constructor.hpp>
+#include <bunsan/system_error.hpp>
 
 namespace yandex{namespace contest
 {

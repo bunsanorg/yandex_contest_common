@@ -1,9 +1,9 @@
 #define BOOST_TEST_MODULE IntrusivePointerHelper
 #include <boost/test/unit_test.hpp>
 
-#include "yandex/contest/IntrusivePointeeBase.hpp"
-#include "yandex/contest/detail/IntrusivePointerHelper.hpp"
-#include "yandex/contest/detail/ForwardHeader.hpp"
+#include <yandex/contest/IntrusivePointeeBase.hpp>
+#include <yandex/contest/detail/IntrusivePointerHelper.hpp>
+#include <yandex/contest/detail/ForwardHeader.hpp>
 
 BOOST_AUTO_TEST_SUITE(IntrusivePointerHelper)
 
@@ -56,4 +56,4 @@ YANDEX_CONTEST_INTRUSIVE_PTR_DEFINE(Test)
 
 BOOST_AUTO_TEST_SUITE_END() // IntrusivePointerHelper
 
-#include "yandex/contest/detail/ForwardFooter.hpp"
+#include <yandex/contest/detail/ForwardFooter.hpp>

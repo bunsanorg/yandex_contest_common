@@ -1,6 +1,6 @@
 #pragma once
 
-#include "yandex/contest/Log.hpp"
+#include <yandex/contest/Log.hpp>
 
 namespace yandex{namespace contest{namespace detail
 {

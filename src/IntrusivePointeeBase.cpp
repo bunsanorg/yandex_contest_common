@@ -1,4 +1,4 @@
-#include "yandex/contest/IntrusivePointeeBase.hpp"
+#include <yandex/contest/IntrusivePointeeBase.hpp>
 
 namespace yandex{namespace contest
 {

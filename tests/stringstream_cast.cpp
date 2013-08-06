@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE stringstream_cast
 #include <boost/test/unit_test.hpp>
 
-#include "yandex/contest/StringStreamCast.hpp"
+#include <yandex/contest/StringStreamCast.hpp>
 
 namespace ya = yandex::contest;
 

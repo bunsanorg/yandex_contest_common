@@ -1,9 +1,9 @@
 #pragma once
 
-#include "yandex/contest/Forward.hpp"
-#include "yandex/contest/IntrusivePointeeBase.hpp"
+#include <yandex/contest/Forward.hpp>
+#include <yandex/contest/IntrusivePointeeBase.hpp>
 
-#include "bunsan/stream_enum.hpp"
+#include <bunsan/stream_enum.hpp>
 
 #include <string>
 
@@ -95,4 +95,4 @@ namespace yandex{namespace contest
 }}
 
 // This include should be placed after ::yandex::Log declaration.
-#include "yandex/contest/detail/LogOutputStream.hpp"
+#include <yandex/contest/detail/LogOutputStream.hpp>

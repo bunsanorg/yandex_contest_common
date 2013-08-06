@@ -1,4 +1,4 @@
-#include "yandex/contest/detail/NullLog.hpp"
+#include <yandex/contest/detail/NullLog.hpp>
 
 namespace yandex{namespace contest{namespace detail
 {

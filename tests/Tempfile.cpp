@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE Tempfile
 #include <boost/test/unit_test.hpp>
 
-#include "yandex/contest/Tempfile.hpp"
+#include <yandex/contest/Tempfile.hpp>
 
 #include <iterator>
 

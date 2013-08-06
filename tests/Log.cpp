@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE Log
 #include <boost/test/unit_test.hpp>
 
-#include "yandex/contest/Log.hpp"
+#include <yandex/contest/Log.hpp>
 
 using namespace yandex::contest;
 

@@ -1,4 +1,4 @@
-#include "yandex/contest/TypeInfo.hpp"
+#include <yandex/contest/TypeInfo.hpp>
 
 #include <boost/scope_exit.hpp>
 

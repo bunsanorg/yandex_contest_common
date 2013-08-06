@@ -1,7 +1,7 @@
-#include "yandex/contest/Log.hpp"
+#include <yandex/contest/Log.hpp>
 
-#include "yandex/contest/detail/IntrusivePointerHelper.hpp"
-#include "yandex/contest/detail/StreamLog.hpp"
+#include <yandex/contest/detail/IntrusivePointerHelper.hpp>
+#include <yandex/contest/detail/StreamLog.hpp>
 
 #include <iostream>
 

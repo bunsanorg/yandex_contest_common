@@ -1,6 +1,6 @@
 //#include "yandex/contest/detail/LogOutputStream.hpp"
 
-#include "yandex/contest/Log.hpp"
+#include <yandex/contest/Log.hpp>
 
 #include <boost/assert.hpp>
 #include <boost/property_tree/json_parser.hpp>

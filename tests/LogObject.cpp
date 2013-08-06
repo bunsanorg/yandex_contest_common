@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE LogObject
 #include <boost/test/unit_test.hpp>
 
-#include "yandex/contest/detail/LogHelper.hpp"
+#include <yandex/contest/detail/LogHelper.hpp>
 
 BOOST_AUTO_TEST_SUITE(Log)
 

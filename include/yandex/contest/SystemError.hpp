@@ -12,7 +12,6 @@ namespace yandex{namespace contest
         BUNSAN_INHERIT_EXPLICIT_CONSTRUCTOR(SystemError, bunsan::system_error)
 
         typedef error_code errorCode;
-        typedef error_code_message errorCodeMessage;
         typedef what_message whatMessage;
     };
 }}

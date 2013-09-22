@@ -3,10 +3,11 @@
 
 #include <yandex/contest/Tempfile.hpp>
 
-#include <boost/filesystem/fstream.hpp>
+#include <bunsan/testing/filesystem/read_data.hpp>
+
 #include <boost/filesystem/operations.hpp>
 
-#include <iterator>
+using namespace bunsan::testing;
 
 namespace ya = yandex::contest;
 namespace fs = boost::filesystem;
@@ -17,7 +18,7 @@ BOOST_AUTO_TEST_CASE(autoRemove)
     {
         ya::Tempfile tmp;
         path = tmp.path();
-        BOOST_CHECK(fs::exists(tmp.path()));
+        BOOST_CHECK(filesystem::read_data(tmp.path()).empty());
     }
     BOOST_CHECK(!fs::exists(path));
 }
@@ -29,13 +30,7 @@ BOOST_AUTO_TEST_CASE(data)
     {
         ya::Tempfile tmp(text);
         path = tmp.path();
-        BOOST_CHECK(fs::exists(tmp.path()));
-        {
-            fs::ifstream fin(tmp.path());
-            BOOST_CHECK(fin);
-            const std::string txt{std::istreambuf_iterator<char>(fin), std::istreambuf_iterator<char>()};
-            BOOST_CHECK_EQUAL(txt, text);
-        }
+        BOOST_CHECK_EQUAL(filesystem::read_data(tmp.path()), text);
     }
     BOOST_CHECK(!fs::exists(path));
 }

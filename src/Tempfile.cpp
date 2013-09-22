@@ -2,7 +2,6 @@
 
 #include <yandex/contest/detail/LogHelper.hpp>
 
-#include <bunsan/enable_error_info.hpp>
 #include <bunsan/filesystem/fstream.hpp>
 
 #include <boost/assert.hpp>
@@ -15,13 +14,13 @@ namespace yandex{namespace contest
         path_(boost::filesystem::unique_path(boost::filesystem::temp_directory_path() / "%%%%-%%%%-%%%%-%%%%"))
     {
         STREAM_DEBUG << "Creating temporary file at " << path_.get() << ".";
-        BUNSAN_EXCEPTIONS_WRAP_BEGIN()
+        bunsan::filesystem::ofstream fout(path_.get());
+        BUNSAN_FILESYSTEM_FSTREAM_WRAP_BEGIN(fout)
         {
-            bunsan::filesystem::ofstream fout(path_.get());
             fout << data;
-            fout.close();
         }
-        BUNSAN_EXCEPTIONS_WRAP_END()
+        BUNSAN_FILESYSTEM_FSTREAM_WRAP_END(fout)
+        fout.close();
     }
 
     Tempfile::Tempfile(Tempfile &&tmp) noexcept

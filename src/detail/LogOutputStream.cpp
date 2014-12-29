@@ -1,4 +1,4 @@
-//#include "yandex/contest/detail/LogOutputStream.hpp"
+//#include <yandex/contest/detail/LogOutputStream.hpp>
 
 #include <yandex/contest/Log.hpp>
 

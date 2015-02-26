@@ -2,13 +2,9 @@ project(yandex_contest_common)
 
 include(${CMAKE_SOURCE_DIR}/system-config.cmake OPTIONAL)
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 
-include(BunsanCommon)
-
-bunsan_use_boost(system filesystem serialization)
-
-bunsan_use_bunsan(common)
+find_package(BunsanCMake CONFIG REQUIRED)
 
 bunsan_add_shared_library(${PROJECT_NAME}
     src/IntrusivePointeeBase.cpp
@@ -22,9 +18,11 @@ bunsan_add_shared_library(${PROJECT_NAME}
     src/detail/ThrowingLog.cpp
     src/detail/NullLog.cpp
 )
+bunsan_use_bunsan_package(${PROJECT_NAME} bunsan_common bunsan_common)
+bunsan_use_boost(${PROJECT_NAME} system filesystem serialization)
 
 bunsan_install_headers()
 bunsan_install_targets(${PROJECT_NAME})
-bunsan_install_plugins(BunsanCmake)
+bunsan_install_project()
 
 bunsan_include_tests()

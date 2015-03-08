@@ -6,7 +6,7 @@ project(yandex_contest_common)
 
 find_package(BunsanCMake CONFIG REQUIRED)
 
-bunsan_add_shared_library(${PROJECT_NAME}
+bunsan_add_library(${PROJECT_NAME}
     src/IntrusivePointeeBase.cpp
     src/Log.cpp
     src/Tempfile.cpp

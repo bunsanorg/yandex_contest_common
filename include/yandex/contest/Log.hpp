@@ -81,6 +81,15 @@ namespace yandex{namespace contest
         static void registerInstance(const LogPointer &log);
 
         /*!
+         * \brief Disable logging.
+         *
+         * \note Logging can be enabled again by registering another instance.
+         *
+         * \warning Function is not thread-safe.
+         */
+        static void disableLogging();
+
+        /*!
          * \brief Default log instance.
          *
          * This instance uses std::clog for logging.

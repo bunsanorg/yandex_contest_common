@@ -1,6 +1,7 @@
 #include <yandex/contest/Log.hpp>
 
 #include <yandex/contest/detail/IntrusivePointerHelper.hpp>
+#include <yandex/contest/detail/NullLog.hpp>
 #include <yandex/contest/detail/StreamLog.hpp>
 
 #include <iostream>
@@ -19,6 +20,12 @@ namespace yandex{namespace contest
     void Log::registerInstance(const LogPointer &log)
     {
         instance_ = log;
+    }
+
+    void Log::disableLogging()
+    {
+        const LogPointer ptr(new detail::NullLog);
+        registerInstance(ptr);
     }
 
     const LogPointer &Log::defaultInstance()

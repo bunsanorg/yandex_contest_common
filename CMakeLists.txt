@@ -10,7 +10,6 @@ bunsan_add_library(${PROJECT_NAME}
     src/IntrusivePointeeBase.cpp
     src/Log.cpp
     src/Tempfile.cpp
-    src/TypeInfo.cpp
 
     src/detail/IntrusivePointerHelper.cpp
     src/detail/LogOutputStream.cpp

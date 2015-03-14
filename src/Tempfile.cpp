@@ -1,6 +1,6 @@
 #include <yandex/contest/Tempfile.hpp>
 
-#include <yandex/contest/detail/LogHelper.hpp>
+#include <yandex/contest/StreamLog.hpp>
 
 #include <bunsan/filesystem/fstream.hpp>
 

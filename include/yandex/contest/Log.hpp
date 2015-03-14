@@ -29,7 +29,8 @@ namespace yandex{namespace contest
             DEBUG,
             INFO,
             WARNING,
-            ERROR
+            ERROR,
+            FATAL
         ))
 
     public:

@@ -12,10 +12,6 @@ bunsan_add_library(${PROJECT_NAME}
     src/Tempfile.cpp
 
     src/detail/IntrusivePointerHelper.cpp
-    src/detail/LogOutputStream.cpp
-    src/detail/StreamLog.cpp
-    src/detail/ThrowingLog.cpp
-    src/detail/NullLog.cpp
 )
 bunsan_use_bunsan_package(${PROJECT_NAME} bunsan_common bunsan_common)
 bunsan_use_boost(${PROJECT_NAME} system filesystem serialization)

@@ -1,8 +1,8 @@
 #include <yandex/contest/Log.hpp>
 
-#include <bunsan/logging/core.hpp>
-#include <bunsan/logging/expressions/scope.hpp>
-#include <bunsan/logging/trivial.hpp>
+#include <bunsan/log/core.hpp>
+#include <bunsan/log/expressions/scope.hpp>
+#include <bunsan/log/trivial.hpp>
 
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/format.hpp>
@@ -13,9 +13,9 @@
 
 namespace yandex{namespace contest
 {
-    static bunsan::logging::severity toSeverity(const Log::Level level)
+    static bunsan::log::severity toSeverity(const Log::Level level)
     {
-        using bunsan::logging::severity;
+        using bunsan::log::severity;
 
         switch (level)
         {
@@ -35,9 +35,9 @@ namespace yandex{namespace contest
         return severity::info;
     }
 
-    static Log::Level toLevel(const bunsan::logging::severity sev)
+    static Log::Level toLevel(const bunsan::log::severity sev)
     {
-        using bunsan::logging::severity;
+        using bunsan::log::severity;
 
         switch (sev)
         {
@@ -80,7 +80,7 @@ namespace yandex{namespace contest
 
             void consume(const boost::log::record_view &rec)
             {
-                namespace expr = bunsan::logging::expressions;
+                namespace expr = bunsan::log::expressions;
 
                 function_(
                     rec[Timestamp].apply_visitor_or_default(
@@ -89,8 +89,8 @@ namespace yandex{namespace contest
                     ),
                     toLevel(
                         rec[expr::severity].apply_visitor_or_default(
-                            Visitor<bunsan::logging::severity>(),
-                            bunsan::logging::severity::info
+                            Visitor<bunsan::log::severity>(),
+                            bunsan::log::severity::info
                         )
                     ),
                     str(boost::format("%1%(%2%):%3%") %
@@ -133,7 +133,7 @@ namespace yandex{namespace contest
 
     void Log::setFunction(const Function &function)
     {
-        bunsan::logging::remove_default_sink();
+        bunsan::log::remove_default_sink();
         static std::mutex lock;
         static boost::shared_ptr<boost::log::sinks::sink> sink;
         std::lock_guard<std::mutex> lk(lock);
@@ -150,16 +150,16 @@ namespace yandex{namespace contest
 
     void Log::setMinimumLevel(const Level level)
     {
-        bunsan::logging::set_minimum_severity(toSeverity(level));
+        bunsan::log::set_minimum_severity(toSeverity(level));
     }
 
     void Log::enableLogging()
     {
-        bunsan::logging::enable();
+        bunsan::log::enable();
     }
 
     void Log::disableLogging()
     {
-        bunsan::logging::disable();
+        bunsan::log::disable();
     }
 }}

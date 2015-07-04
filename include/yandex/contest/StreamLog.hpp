@@ -3,7 +3,7 @@
 #include <yandex/contest/detail/LogObject.hpp>
 #include <yandex/contest/Log.hpp>
 
-#include <bunsan/logging/trivial.hpp>
+#include <bunsan/log/trivial.hpp>
 
 /*!
  * \file

@@ -3,11 +3,11 @@
 
 #include <yandex/contest/Tempfile.hpp>
 
-#include <bunsan/testing/filesystem/read_data.hpp>
+#include <bunsan/test/filesystem/read_data.hpp>
 
 #include <boost/filesystem/operations.hpp>
 
-using namespace bunsan::testing;
+using namespace bunsan::test;
 
 namespace ya = yandex::contest;
 namespace fs = boost::filesystem;

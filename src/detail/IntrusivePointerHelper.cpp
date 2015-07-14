@@ -2,15 +2,13 @@
 
 #include <yandex/contest/IntrusivePointeeBase.hpp>
 
-namespace yandex{namespace contest{namespace intrusive_ptr_detail
-{
-    void add_ref(IntrusivePointeeBase *ptr) noexcept
-    {
-        intrusive_ptr_add_ref(ptr);
-    }
+namespace yandex {
+namespace contest {
+namespace intrusive_ptr_detail {
 
-    void release(IntrusivePointeeBase *ptr) noexcept
-    {
-        intrusive_ptr_release(ptr);
-    }
-}}}
+void add_ref(IntrusivePointeeBase *ptr) noexcept { intrusive_ptr_add_ref(ptr); }
+void release(IntrusivePointeeBase *ptr) noexcept { intrusive_ptr_release(ptr); }
+
+}  // namespace intrusive_ptr_detail
+}  // namespace contest
+}  // namespace yandex

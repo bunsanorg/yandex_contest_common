@@ -14,10 +14,12 @@
  * \section streaming_iface_sec streaming interface
  * STREAM_{Level} defines accept no arguments.
  * Using operator<< user can output anything supported by std::ostream.
- * To output yandex::contest::config-serializable object use STREAM_OBJECT() wrapper.
+ * To output yandex::contest::config-serializable object use STREAM_OBJECT()
+ * wrapper.
  * \code{.cpp}
  * std::vector<int> x = {1, 2, 3};
- * STREAM_INFO << "First part " << 123 << " one more string " << STREAM_OBJECT(obj);
+ * STREAM_INFO << "First part " << 123 << " one more string " <<
+ *             << STREAM_OBJECT(obj);
  * \endcode
  */
 

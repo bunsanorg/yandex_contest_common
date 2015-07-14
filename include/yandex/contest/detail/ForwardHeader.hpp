@@ -20,7 +20,7 @@
 #include <boost/intrusive_ptr.hpp>
 
 #define YANDEX_CONTEST_INTRUSIVE_PTR_FWD_DECLARE(CLASS) \
-    class CLASS; \
-    typedef boost::intrusive_ptr<CLASS> CLASS##Pointer; \
-    void intrusive_ptr_add_ref(CLASS *) noexcept; \
-    void intrusive_ptr_release(CLASS *) noexcept
+  class CLASS;                                          \
+  using CLASS##Pointer = boost::intrusive_ptr<CLASS>;   \
+  void intrusive_ptr_add_ref(CLASS *) noexcept;         \
+  void intrusive_ptr_release(CLASS *) noexcept

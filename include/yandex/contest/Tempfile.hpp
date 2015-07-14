@@ -5,31 +5,30 @@
 
 #include <string>
 
-namespace yandex{namespace contest
-{
-    class Tempfile
-    {
-    public:
-        /// Create temporary file filled by data.
-        explicit Tempfile(const std::string &data=std::string());
+namespace yandex {
+namespace contest {
 
-        Tempfile(const Tempfile &)=delete;
-        Tempfile(Tempfile &&) noexcept;
-        Tempfile &operator=(const Tempfile &)=delete;
-        Tempfile &operator=(Tempfile &&) noexcept;
-        ~Tempfile();
+class Tempfile {
+ public:
+  /// Create temporary file filled by data.
+  explicit Tempfile(const std::string &data = std::string());
 
-        void remove();
-        const boost::filesystem::path &path() const;
+  Tempfile(const Tempfile &) = delete;
+  Tempfile(Tempfile &&) noexcept;
+  Tempfile &operator=(const Tempfile &) = delete;
+  Tempfile &operator=(Tempfile &&) noexcept;
+  ~Tempfile();
 
-        void swap(Tempfile &) noexcept;
+  void remove();
+  const boost::filesystem::path &path() const;
 
-    private:
-        boost::optional<boost::filesystem::path> path_;
-    };
+  void swap(Tempfile &) noexcept;
 
-    inline void swap(Tempfile &a, Tempfile &b) noexcept
-    {
-        a.swap(b);
-    }
-}}
+ private:
+  boost::optional<boost::filesystem::path> path_;
+};
+
+inline void swap(Tempfile &a, Tempfile &b) noexcept { a.swap(b); }
+
+}  // namespace contest
+}  // namespace yandex

@@ -6,17 +6,19 @@
 
 #include <cstddef>
 
-namespace yandex{namespace contest
-{
-    class IntrusivePointeeBase: private boost::noncopyable
-    {
-    public:
-        IntrusivePointeeBase(): refCount_(0) {}
-        virtual ~IntrusivePointeeBase() {}
+namespace yandex {
+namespace contest {
 
-    private:
-        friend void intrusive_ptr_add_ref(IntrusivePointeeBase *) noexcept;
-        friend void intrusive_ptr_release(IntrusivePointeeBase *) noexcept;
-        std::atomic<std::size_t> refCount_;
-    };
-}}
+class IntrusivePointeeBase : private boost::noncopyable {
+ public:
+  IntrusivePointeeBase() : refCount_(0) {}
+  virtual ~IntrusivePointeeBase() {}
+
+ private:
+  friend void intrusive_ptr_add_ref(IntrusivePointeeBase *) noexcept;
+  friend void intrusive_ptr_release(IntrusivePointeeBase *) noexcept;
+  std::atomic<std::size_t> refCount_;
+};
+
+}  // namespace contest
+}  // namespace yandex

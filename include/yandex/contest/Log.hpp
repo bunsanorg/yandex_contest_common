@@ -7,36 +7,36 @@
 #include <functional>
 #include <string>
 
-namespace yandex{namespace contest
-{
-    class Log
-    {
-    public:
-        BUNSAN_INCLASS_STREAM_ENUM_CLASS(Level,
-        (
-            TRACE,
-            DEBUG,
-            INFO,
-            WARNING,
-            ERROR,
-            FATAL
-        ))
+namespace yandex {
+namespace contest {
 
-        typedef std::function<void (const boost::posix_time::ptime &timestamp,
-                                    Level level,
-                                    const std::string &position,
-                                    const std::string &message)> Function;
+class Log {
+ public:
+  BUNSAN_INCLASS_STREAM_ENUM_CLASS(Level, (
+    TRACE,
+    DEBUG,
+    INFO,
+    WARNING,
+    ERROR,
+    FATAL
+  ))
 
-    public:
-        static void setFunction(const Function &function);
+  using Function = std::function<void(const boost::posix_time::ptime &timestamp,
+                                      Level level, const std::string &position,
+                                      const std::string &message)>;
 
-        /// Drop all log entries with smaller level.
-        static void setMinimumLevel(const Level level);
+ public:
+  static void setFunction(const Function &function);
 
-        /// Enable previously disabled logging.
-        static void enableLogging();
+  /// Drop all log entries with smaller level.
+  static void setMinimumLevel(const Level level);
 
-        /// Completely disable logging, must be called in forked process.
-        static void disableLogging();
-    };
-}}
+  /// Enable previously disabled logging.
+  static void enableLogging();
+
+  /// Completely disable logging, must be called in forked process.
+  static void disableLogging();
+};
+
+}  // namespace contest
+}  // namespace yandex

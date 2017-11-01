@@ -118,7 +118,7 @@ void Log::setFunction(const Function &function) {
     core->remove_sink(sink);
     sink.reset();
   }
-  sink = boost::make_shared<Sink>(function);
+  sink = boost::make_shared<Sink>(boost::make_shared<SinkBackend>(function));
   boost::log::core::get()->add_sink(sink);
 }
 
